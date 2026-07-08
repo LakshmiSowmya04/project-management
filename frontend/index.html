@@ -7,32 +7,30 @@
   <style>
     :root {
       --bg: #eef6ff;
-      --card: rgba(255, 255, 255, 0.9);
+      --card: #ffffff;
       --text: #102033;
       --muted: #64748b;
       --primary: #2563eb;
-      --primary-dark: #1d4ed8;
       --green: #16a34a;
       --red: #dc2626;
       --gray: #64748b;
       --border: #dbeafe;
-      --table-head: #1e3a8a;
-      --shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+      --head: #1e3a8a;
+      --shadow: 0 10px 25px rgba(37, 99, 235, 0.12);
     }
 
     body.dark {
       --bg: #07111f;
-      --card: rgba(15, 23, 42, 0.92);
+      --card: #0f172a;
       --text: #e5e7eb;
       --muted: #94a3b8;
       --primary: #3b82f6;
-      --primary-dark: #2563eb;
       --green: #22c55e;
       --red: #ef4444;
       --gray: #64748b;
       --border: #1e3a5f;
-      --table-head: #0f172a;
-      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      --head: #020617;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     }
 
     * {
@@ -42,72 +40,72 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.25), transparent 35%),
-        linear-gradient(135deg, var(--bg), #f8fbff);
+      background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
-    }
-
-    body.dark {
-      background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.35), transparent 35%),
-        linear-gradient(135deg, #07111f, #020617);
     }
 
     header {
-      padding: 24px;
       background: linear-gradient(135deg, #1e3a8a, #2563eb);
       color: white;
-      box-shadow: var(--shadow);
+      padding: 22px;
     }
 
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 28px;
+    .nav {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    header p {
-      margin: 8px 0 0;
-      color: #dbeafe;
+    .nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.16);
+      font-weight: bold;
+    }
+
+    .nav a.active {
+      background: white;
+      color: #1e3a8a;
     }
 
     .container {
       padding: 22px;
-      max-width: 1400px;
+      max-width: 1450px;
       margin: auto;
     }
 
     .stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: 15px;
       margin-bottom: 20px;
     }
 
     .stat, .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 16px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
     }
 
     .stat {
-      padding: 18px;
+      padding: 16px;
     }
 
     .stat h2 {
       margin: 0;
-      font-size: 32px;
       color: var(--primary);
+      font-size: 30px;
     }
 
     .stat p {
@@ -121,8 +119,12 @@
     }
 
     .card h2 {
-      margin: 0 0 12px;
-      font-size: 20px;
+      margin-top: 0;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .form-row {
@@ -132,19 +134,13 @@
       align-items: center;
     }
 
-    input {
-      padding: 11px 12px;
+    input, select {
+      padding: 11px;
       border: 1px solid var(--border);
       border-radius: 10px;
       background: var(--card);
       color: var(--text);
-      outline: none;
       min-width: 170px;
-    }
-
-    input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
 
     .search {
@@ -160,24 +156,12 @@
       background: var(--primary);
       color: white;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: bold;
     }
 
-    button:hover {
-      background: var(--primary-dark);
-    }
-
-    .green {
-      background: var(--green);
-    }
-
-    .danger {
-      background: var(--red);
-    }
-
-    .gray {
-      background: var(--gray);
-    }
+    .green { background: var(--green); }
+    .danger { background: var(--red); }
+    .gray { background: var(--gray); }
 
     .theme-btn {
       background: rgba(255, 255, 255, 0.18);
@@ -186,61 +170,40 @@
 
     .table-wrap {
       overflow-x: auto;
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid var(--border);
     }
 
     table {
       width: 100%;
+      min-width: 1000px;
       border-collapse: collapse;
-      min-width: 950px;
       background: var(--card);
     }
 
     th {
-      background: var(--table-head);
+      background: var(--head);
       color: white;
       padding: 12px;
       text-align: left;
-      font-size: 14px;
     }
 
     td {
       padding: 12px;
       border-bottom: 1px solid var(--border);
-      color: var(--text);
       vertical-align: top;
-      font-size: 14px;
     }
 
     tr:hover td {
       background: rgba(37, 99, 235, 0.06);
     }
 
-    .AVAILABLE {
-      color: #16a34a;
-      font-weight: bold;
-    }
-
-    .BUSY {
-      color: #f59e0b;
-      font-weight: bold;
-    }
-
-    .COMPLETING_TODAY {
-      color: #2563eb;
-      font-weight: bold;
-    }
-
-    .ON_LEAVE {
-      color: #ef4444;
-      font-weight: bold;
-    }
-
-    .RESERVED {
-      color: #a855f7;
-      font-weight: bold;
-    }
+    .AVAILABLE, .CLIENT_QUEUE { color: #16a34a; font-weight: bold; }
+    .BUSY, .IN_PROGRESS { color: #f59e0b; font-weight: bold; }
+    .COMPLETING_TODAY, .ENDING_TODAY { color: #2563eb; font-weight: bold; }
+    .ON_LEAVE { color: #ef4444; font-weight: bold; }
+    .RESERVED, .SCHEDULED { color: #a855f7; font-weight: bold; }
+    .COMPLETED { color: #64748b; font-weight: bold; }
 
     .msg {
       display: none;
@@ -249,36 +212,21 @@
       margin-bottom: 16px;
       background: #dbeafe;
       color: #1e40af;
-      border: 1px solid #bfdbfe;
     }
 
-    body.dark .msg {
-      background: #172554;
-      color: #bfdbfe;
-      border-color: #1d4ed8;
+    .page {
+      display: none;
     }
 
-    .hint {
-      color: var(--muted);
-      margin-top: -5px;
-      font-size: 14px;
+    .page.active {
+      display: block;
     }
 
-    .queue-actions {
+    .assign-box {
       display: flex;
       flex-direction: column;
       gap: 8px;
-    }
-
-    .leave-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .leave-row input {
-      min-width: 130px;
-      width: 130px;
+      min-width: 260px;
     }
 
     @media (max-width: 900px) {
@@ -287,8 +235,8 @@
       }
 
       .topbar {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
       }
     }
 
@@ -297,11 +245,7 @@
         grid-template-columns: 1fr;
       }
 
-      input, button {
-        width: 100%;
-      }
-
-      .leave-row input {
+      input, select, button {
         width: 100%;
       }
     }
@@ -314,135 +258,291 @@
   <div class="topbar">
     <div>
       <h1>Pentest Resource Planner</h1>
-      <p>Simple engineer availability, leave tracking, and project assignment dashboard.</p>
+      <p>Engineers, leads, clients, queues, leave, and active assignments.</p>
     </div>
 
-    <button class="theme-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+    <button class="theme-btn" onclick="toggleTheme()">Dark Mode</button>
+  </div>
+
+  <div class="nav">
+    <a id="engineersNav" href="/engineers">Engineers</a>
+    <a id="clientsNav" href="/clients">Clients</a>
   </div>
 </header>
 
 <div class="container">
-
   <div id="message" class="msg"></div>
 
-  <div class="stats">
-    <div class="stat">
-      <h2 id="totalCount">0</h2>
-      <p>Total Engineers</p>
+  <section id="engineersPage" class="page">
+    <div class="stats">
+      <div class="stat">
+        <h2 id="totalEngineers">0</h2>
+        <p>Total Engineers</p>
+      </div>
+
+      <div class="stat">
+        <h2 id="availableEngineers">0</h2>
+        <p>Available Queue</p>
+      </div>
+
+      <div class="stat">
+        <h2 id="busyEngineers">0</h2>
+        <p>Busy / Reserved</p>
+      </div>
+
+      <div class="stat">
+        <h2 id="leaveEngineers">0</h2>
+        <p>On Leave</p>
+      </div>
     </div>
 
-    <div class="stat">
-      <h2 id="availableCount">0</h2>
-      <p>Available Queue</p>
+    <div class="card">
+      <h2>Add Engineer</h2>
+
+      <div class="form-row">
+        <input id="engineerName" placeholder="Engineer name">
+        <input id="engineerSkills" placeholder="Skills e.g. Web, API, Cloud">
+
+        <select id="engineerLevel">
+          <option value="">Select level</option>
+          <option value="Junior">Junior</option>
+          <option value="Mid">Mid</option>
+          <option value="Senior">Senior</option>
+        </select>
+
+        <button onclick="addEngineer()">Add Engineer</button>
+      </div>
     </div>
 
-    <div class="stat">
-      <h2 id="busyCount">0</h2>
-      <p>Busy / Reserved</p>
+    <div class="card">
+      <h2>Add Lead</h2>
+      <p class="hint">Leads added here will appear as dropdown options in the Clients assignment section.</p>
+
+      <div class="form-row">
+        <input id="leadName" placeholder="Lead name">
+        <input id="leadSkills" placeholder="Lead skills e.g. Web, API, Cloud">
+        <button onclick="addLead()">Add Lead</button>
+      </div>
     </div>
 
-    <div class="stat">
-      <h2 id="leaveCount">0</h2>
-      <p>On Leave</p>
+    <div class="card">
+      <h2>Available Engineers Queue</h2>
+      <p class="hint">These engineers are automatically available for client assignment.</p>
+
+      <input class="search" id="engineerQueueSearch" placeholder="Search available engineers..." oninput="renderEngineerQueue()">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Engineer</th>
+              <th>Skills</th>
+              <th>Level</th>
+              <th>Status</th>
+              <th>Reason</th>
+              <th>Leave Action</th>
+            </tr>
+          </thead>
+          <tbody id="engineerQueueTable"></tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>Add Engineer</h2>
+    <div class="card">
+      <h2>Leads</h2>
 
-    <div class="form-row">
-      <input id="name" placeholder="Engineer name">
-      <input id="skills" placeholder="Skills e.g. Web, API, Cloud">
-      <button onclick="addEngineer()">Add Engineer</button>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Lead ID</th>
+              <th>Name</th>
+              <th>Skills</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="leadsTable"></tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>Assign Project</h2>
-    <p class="hint">Click Confirm Assign from queue, then fill project details here.</p>
+    <div class="card">
+      <h2>All Engineers</h2>
+      <input class="search" id="allEngineerSearch" placeholder="Search all engineers..." oninput="renderAllEngineers()">
 
-    <div class="form-row">
-      <input id="assignId" placeholder="Engineer ID">
-      <input id="projectName" placeholder="Project name">
-      <input id="pmName" placeholder="Project manager">
-      <input id="leadName" placeholder="Lead name">
-      <input id="startDate" type="date">
-      <input id="endDate" type="date">
-      <button class="green" onclick="assignProject()">Confirm Assign</button>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Engineer</th>
+              <th>Skills</th>
+              <th>Level</th>
+              <th>Client</th>
+              <th>Project</th>
+              <th>PM</th>
+              <th>Lead</th>
+              <th>Dates</th>
+              <th>Leave</th>
+              <th>Status</th>
+              <th>Reason</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="allEngineersTable"></tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>Available Queue</h2>
-    <p class="hint">Available engineers appear automatically. If PM marks leave, they are removed from this queue.</p>
+  <section id="clientsPage" class="page">
+    <div class="stats">
+      <div class="stat">
+        <h2 id="totalClients">0</h2>
+        <p>Total Clients</p>
+      </div>
 
-    <input
-      class="search"
-      id="queueSearch"
-      placeholder="Search available engineers..."
-      oninput="renderQueue()"
-    >
+      <div class="stat">
+        <h2 id="clientQueueCount">0</h2>
+        <p>Client Queue</p>
+      </div>
 
-    <button onclick="loadData()">Refresh</button>
+      <div class="stat">
+        <h2 id="activeClientCount">0</h2>
+        <p>Active / Scheduled</p>
+      </div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Engineer</th>
-            <th>Skills</th>
-            <th>Status</th>
-            <th>Reason</th>
-            <th>PM Actions</th>
-          </tr>
-        </thead>
-
-        <tbody id="queueTable"></tbody>
-      </table>
+      <div class="stat">
+        <h2 id="completedClientCount">0</h2>
+        <p>Completed</p>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>All Engineers</h2>
+    <div class="card">
+      <h2>Add Client</h2>
+      <p class="hint">Client enters queue first. Then assign available engineer and lead from dropdown.</p>
 
-    <input
-      class="search"
-      id="engineerSearch"
-      placeholder="Search all engineers..."
-      oninput="renderEngineers()"
-    >
+      <div class="form-row">
+        <input id="clientName" placeholder="Client name">
+        <input id="clientProjectName" placeholder="Project name">
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Engineer</th>
-            <th>Skills</th>
-            <th>Project</th>
-            <th>PM</th>
-            <th>Lead</th>
-            <th>Project Dates</th>
-            <th>Leave Dates</th>
-            <th>Status</th>
-            <th>Reason</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+        <select id="clientProjectType">
+          <option value="">Project type</option>
+          <option value="Web Pentest">Web Pentest</option>
+          <option value="API Pentest">API Pentest</option>
+          <option value="Mobile Pentest">Mobile Pentest</option>
+          <option value="Cloud Pentest">Cloud Pentest</option>
+          <option value="Network Pentest">Network Pentest</option>
+          <option value="Source Code Review">Source Code Review</option>
+        </select>
 
-        <tbody id="engineerTable"></tbody>
-      </table>
+        <select id="clientPriority">
+          <option value="">Priority</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+          <option value="Critical">Critical</option>
+        </select>
+
+        <input id="clientRequestedSkills" placeholder="Required skills">
+        <input id="clientPmName" placeholder="Project manager">
+
+        <button onclick="addClient()">Add Client</button>
+      </div>
     </div>
-  </div>
 
+    <div class="card">
+      <h2>Client Queue</h2>
+      <p class="hint">Assign available engineer and lead using dropdowns.</p>
+
+      <input class="search" id="clientQueueSearch" placeholder="Search client queue..." oninput="renderClientQueue()">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Client ID</th>
+              <th>Client</th>
+              <th>Project</th>
+              <th>Type</th>
+              <th>Priority</th>
+              <th>Skills Needed</th>
+              <th>PM</th>
+              <th>Status</th>
+              <th>Assign</th>
+            </tr>
+          </thead>
+          <tbody id="clientQueueTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Active Client Work</h2>
+      <p class="hint">Shows which engineer is working on which client, under which lead, from when to when.</p>
+
+      <input class="search" id="activeClientSearch" placeholder="Search active client work..." oninput="renderActiveClients()">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Project</th>
+              <th>Type</th>
+              <th>Engineer</th>
+              <th>PM</th>
+              <th>Lead</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Status</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody id="activeClientsTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>All Clients</h2>
+      <input class="search" id="allClientSearch" placeholder="Search all clients..." oninput="renderAllClients()">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Client ID</th>
+              <th>Client</th>
+              <th>Project</th>
+              <th>Type</th>
+              <th>Priority</th>
+              <th>Engineer</th>
+              <th>PM</th>
+              <th>Lead</th>
+              <th>Dates</th>
+              <th>Status</th>
+              <th>Reason</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="allClientsTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 </div>
 
 <script>
 const API = "/api";
 
-let allEngineers = [];
-let availableQueue = [];
+let engineers = [];
+let engineerQueue = [];
+let leads = [];
+let clients = [];
+let clientQueue = [];
+let activeClients = [];
 
 function h(value) {
   return String(value || "")
@@ -485,109 +585,168 @@ async function request(url, options) {
   return data;
 }
 
-async function loadData() {
-  allEngineers = await request(`${API}/engineers`);
-  availableQueue = await request(`${API}/queue`);
-
-  renderCounts();
-  renderQueue();
-  renderEngineers();
+function matchSearch(item, searchText) {
+  return JSON.stringify(item).toLowerCase().includes(searchText.toLowerCase());
 }
 
-function renderCounts() {
-  document.getElementById("totalCount").innerText = allEngineers.length;
+function showPage() {
+  const path = window.location.pathname;
 
-  document.getElementById("availableCount").innerText =
-    allEngineers.filter(e => e.status === "AVAILABLE").length;
+  document.getElementById("engineersPage").classList.remove("active");
+  document.getElementById("clientsPage").classList.remove("active");
+  document.getElementById("engineersNav").classList.remove("active");
+  document.getElementById("clientsNav").classList.remove("active");
 
-  document.getElementById("busyCount").innerText =
-    allEngineers.filter(e =>
+  if (path === "/clients") {
+    document.getElementById("clientsPage").classList.add("active");
+    document.getElementById("clientsNav").classList.add("active");
+  } else {
+    document.getElementById("engineersPage").classList.add("active");
+    document.getElementById("engineersNav").classList.add("active");
+  }
+}
+
+async function loadData() {
+  engineers = await request(`${API}/engineers`);
+  engineerQueue = await request(`${API}/queue`);
+  leads = await request(`${API}/leads`);
+  clients = await request(`${API}/clients`);
+  clientQueue = await request(`${API}/client-queue`);
+  activeClients = await request(`${API}/active-clients`);
+
+  renderEngineerStats();
+  renderEngineerQueue();
+  renderAllEngineers();
+  renderLeads();
+
+  renderClientStats();
+  renderClientQueue();
+  renderActiveClients();
+  renderAllClients();
+}
+
+function renderEngineerStats() {
+  document.getElementById("totalEngineers").innerText = engineers.length;
+  document.getElementById("availableEngineers").innerText = engineerQueue.length;
+
+  document.getElementById("busyEngineers").innerText =
+    engineers.filter(e =>
       e.status === "BUSY" ||
-      e.status === "COMPLETING_TODAY" ||
-      e.status === "RESERVED"
+      e.status === "RESERVED" ||
+      e.status === "COMPLETING_TODAY"
     ).length;
 
-  document.getElementById("leaveCount").innerText =
-    allEngineers.filter(e => e.status === "ON_LEAVE").length;
+  document.getElementById("leaveEngineers").innerText =
+    engineers.filter(e => e.status === "ON_LEAVE").length;
 }
 
-function matchSearch(engineer, searchText) {
-  const value = searchText.toLowerCase();
+function renderClientStats() {
+  document.getElementById("totalClients").innerText = clients.length;
+  document.getElementById("clientQueueCount").innerText = clientQueue.length;
+  document.getElementById("activeClientCount").innerText = activeClients.length;
 
-  const combined = `
-    ${engineer.id}
-    ${engineer.name}
-    ${engineer.skills}
-    ${engineer.projectName}
-    ${engineer.pmName}
-    ${engineer.leadName}
-    ${engineer.startDate}
-    ${engineer.endDate}
-    ${engineer.leaveFrom}
-    ${engineer.leaveTo}
-    ${engineer.status}
-    ${engineer.reason}
-  `.toLowerCase();
-
-  return combined.includes(value);
+  document.getElementById("completedClientCount").innerText =
+    clients.filter(c => c.status === "COMPLETED").length;
 }
 
-function renderQueue() {
-  const table = document.getElementById("queueTable");
-  const searchText = document.getElementById("queueSearch").value;
+function engineerOptions() {
+  if (engineerQueue.length === 0) {
+    return `<option value="">No available engineers</option>`;
+  }
 
+  return `
+    <option value="">Select engineer</option>
+    ${engineerQueue.map(e => `
+      <option value="${h(e.id)}">${h(e.id)} - ${h(e.name)} (${h(e.skills)})</option>
+    `).join("")}
+  `;
+}
+
+function leadOptions() {
+  if (leads.length === 0) {
+    return `<option value="">No leads added</option>`;
+  }
+
+  return `
+    <option value="">Select lead</option>
+    ${leads.map(l => `
+      <option value="${h(l.id)}">${h(l.id)} - ${h(l.name)} (${h(l.skills)})</option>
+    `).join("")}
+  `;
+}
+
+function renderEngineerQueue() {
+  const table = document.getElementById("engineerQueueTable");
+  const search = document.getElementById("engineerQueueSearch").value;
+
+  const list = engineerQueue.filter(e => matchSearch(e, search));
   table.innerHTML = "";
 
-  const filteredQueue = availableQueue.filter(e => matchSearch(e, searchText));
-
-  if (filteredQueue.length === 0) {
-    table.innerHTML = `<tr><td colspan="6">No available engineers found</td></tr>`;
+  if (list.length === 0) {
+    table.innerHTML = `<tr><td colspan="7">No available engineers found</td></tr>`;
     return;
   }
 
-  filteredQueue.forEach(e => {
+  list.forEach(e => {
     table.innerHTML += `
       <tr>
         <td>${h(e.id)}</td>
         <td>${h(e.name)}</td>
         <td>${h(e.skills)}</td>
+        <td>${h(e.level)}</td>
         <td class="${h(e.status)}">${h(e.status)}</td>
         <td>${h(e.reason)}</td>
         <td>
-          <div class="queue-actions">
-            <button class="green" onclick="selectForAssign('${h(e.id)}')">Confirm Assign</button>
-
-            <div class="leave-row">
-              <input id="leaveFrom_${h(e.id)}" type="date">
-              <input id="leaveTo_${h(e.id)}" type="date">
-              <button class="gray" onclick="markLeaveFromQueue('${h(e.id)}')">Mark Leave</button>
-            </div>
-          </div>
+          <input id="leaveFrom_${h(e.id)}" type="date">
+          <input id="leaveTo_${h(e.id)}" type="date">
+          <button class="gray" onclick="markLeave('${h(e.id)}')">Mark Leave</button>
         </td>
       </tr>
     `;
   });
 }
 
-function renderEngineers() {
-  const table = document.getElementById("engineerTable");
-  const searchText = document.getElementById("engineerSearch").value;
-
+function renderLeads() {
+  const table = document.getElementById("leadsTable");
   table.innerHTML = "";
 
-  const filteredEngineers = allEngineers.filter(e => matchSearch(e, searchText));
-
-  if (filteredEngineers.length === 0) {
-    table.innerHTML = `<tr><td colspan="11">No engineers found</td></tr>`;
+  if (leads.length === 0) {
+    table.innerHTML = `<tr><td colspan="4">No leads added</td></tr>`;
     return;
   }
 
-  filteredEngineers.forEach(e => {
+  leads.forEach(lead => {
+    table.innerHTML += `
+      <tr>
+        <td>${h(lead.id)}</td>
+        <td>${h(lead.name)}</td>
+        <td>${h(lead.skills)}</td>
+        <td><button class="danger" onclick="deleteLead('${h(lead.id)}')">Delete</button></td>
+      </tr>
+    `;
+  });
+}
+
+function renderAllEngineers() {
+  const table = document.getElementById("allEngineersTable");
+  const search = document.getElementById("allEngineerSearch").value;
+
+  const list = engineers.filter(e => matchSearch(e, search));
+  table.innerHTML = "";
+
+  if (list.length === 0) {
+    table.innerHTML = `<tr><td colspan="13">No engineers found</td></tr>`;
+    return;
+  }
+
+  list.forEach(e => {
     table.innerHTML += `
       <tr>
         <td>${h(e.id)}</td>
         <td>${h(e.name)}</td>
         <td>${h(e.skills)}</td>
+        <td>${h(e.level)}</td>
+        <td>${h(e.clientName) || "-"}</td>
         <td>${h(e.projectName) || "-"}</td>
         <td>${h(e.pmName) || "-"}</td>
         <td>${h(e.leadName) || "-"}</td>
@@ -605,18 +764,119 @@ function renderEngineers() {
   });
 }
 
-function selectForAssign(id) {
-  document.getElementById("assignId").value = id;
-  showMessage(`Engineer ${id} selected. Fill project details and click Confirm Assign.`);
-  window.scrollTo({ top: 230, behavior: "smooth" });
+function renderClientQueue() {
+  const table = document.getElementById("clientQueueTable");
+  const search = document.getElementById("clientQueueSearch").value;
+
+  const list = clientQueue.filter(c => matchSearch(c, search));
+  table.innerHTML = "";
+
+  if (list.length === 0) {
+    table.innerHTML = `<tr><td colspan="9">No clients waiting in queue</td></tr>`;
+    return;
+  }
+
+  list.forEach(c => {
+    table.innerHTML += `
+      <tr>
+        <td>${h(c.id)}</td>
+        <td>${h(c.clientName)}</td>
+        <td>${h(c.projectName)}</td>
+        <td>${h(c.projectType)}</td>
+        <td>${h(c.priority)}</td>
+        <td>${h(c.requestedSkills)}</td>
+        <td>${h(c.pmName)}</td>
+        <td class="${h(c.status)}">${h(c.status)}</td>
+        <td>
+          <div class="assign-box">
+            <select id="eng_${h(c.id)}">
+              ${engineerOptions()}
+            </select>
+
+            <select id="lead_${h(c.id)}">
+              ${leadOptions()}
+            </select>
+
+            <input id="start_${h(c.id)}" type="date">
+            <input id="end_${h(c.id)}" type="date">
+
+            <button class="green" onclick="assignClient('${h(c.id)}')">Assign Client</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function renderActiveClients() {
+  const table = document.getElementById("activeClientsTable");
+  const search = document.getElementById("activeClientSearch").value;
+
+  const list = activeClients.filter(c => matchSearch(c, search));
+  table.innerHTML = "";
+
+  if (list.length === 0) {
+    table.innerHTML = `<tr><td colspan="10">No active client work found</td></tr>`;
+    return;
+  }
+
+  list.forEach(c => {
+    table.innerHTML += `
+      <tr>
+        <td>${h(c.clientName)}</td>
+        <td>${h(c.projectName)}</td>
+        <td>${h(c.projectType)}</td>
+        <td>${h(c.assignedEngineerName)}</td>
+        <td>${h(c.pmName)}</td>
+        <td>${h(c.leadName)}</td>
+        <td>${h(c.startDate)}</td>
+        <td>${h(c.endDate)}</td>
+        <td class="${h(c.status)}">${h(c.status)}</td>
+        <td>${h(c.reason)}</td>
+      </tr>
+    `;
+  });
+}
+
+function renderAllClients() {
+  const table = document.getElementById("allClientsTable");
+  const search = document.getElementById("allClientSearch").value;
+
+  const list = clients.filter(c => matchSearch(c, search));
+  table.innerHTML = "";
+
+  if (list.length === 0) {
+    table.innerHTML = `<tr><td colspan="12">No clients found</td></tr>`;
+    return;
+  }
+
+  list.forEach(c => {
+    table.innerHTML += `
+      <tr>
+        <td>${h(c.id)}</td>
+        <td>${h(c.clientName)}</td>
+        <td>${h(c.projectName)}</td>
+        <td>${h(c.projectType)}</td>
+        <td>${h(c.priority)}</td>
+        <td>${h(c.assignedEngineerName) || "-"}</td>
+        <td>${h(c.pmName)}</td>
+        <td>${h(c.leadName) || "-"}</td>
+        <td>${h(c.startDate) || "-"} ${c.endDate ? "to " + h(c.endDate) : ""}</td>
+        <td class="${h(c.status)}">${h(c.status)}</td>
+        <td>${h(c.reason)}</td>
+        <td><button class="danger" onclick="deleteClient('${h(c.id)}')">Delete</button></td>
+      </tr>
+    `;
+  });
 }
 
 async function addEngineer() {
-  const name = document.getElementById("name").value;
-  const skills = document.getElementById("skills").value;
+  const name = document.getElementById("engineerName").value;
+  const skills = document.getElementById("engineerSkills").value;
+  const level = document.getElementById("engineerLevel").value;
 
-  if (!name || !skills) {
-    showMessage("Enter engineer name and skills");
+  if (!name || !skills || !level) {
+    showMessage("Engineer name, skills, and level required");
     return;
   }
 
@@ -624,60 +884,118 @@ async function addEngineer() {
     await request(`${API}/engineers`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, skills })
+      body: JSON.stringify({ name, skills, level })
     });
 
-    document.getElementById("name").value = "";
-    document.getElementById("skills").value = "";
+    document.getElementById("engineerName").value = "";
+    document.getElementById("engineerSkills").value = "";
+    document.getElementById("engineerLevel").value = "";
 
-    showMessage("Engineer added successfully");
+    showMessage("Engineer added");
     loadData();
   } catch (err) {
     showMessage(err.message);
   }
 }
 
-async function assignProject() {
-  const id = document.getElementById("assignId").value;
+async function addLead() {
+  const name = document.getElementById("leadName").value;
+  const skills = document.getElementById("leadSkills").value;
 
-  if (!id) {
-    showMessage("Select or enter engineer ID");
+  if (!name || !skills) {
+    showMessage("Lead name and skills required");
     return;
   }
 
   try {
-    await request(`${API}/assign/${id}`, {
+    await request(`${API}/leads`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        projectName: document.getElementById("projectName").value,
-        pmName: document.getElementById("pmName").value,
-        leadName: document.getElementById("leadName").value,
-        startDate: document.getElementById("startDate").value,
-        endDate: document.getElementById("endDate").value
-      })
+      body: JSON.stringify({ name, skills })
     });
 
-    document.getElementById("assignId").value = "";
-    document.getElementById("projectName").value = "";
-    document.getElementById("pmName").value = "";
     document.getElementById("leadName").value = "";
-    document.getElementById("startDate").value = "";
-    document.getElementById("endDate").value = "";
+    document.getElementById("leadSkills").value = "";
 
-    showMessage("Project assigned. Engineer removed from available queue.");
+    showMessage("Lead added");
     loadData();
   } catch (err) {
     showMessage(err.message);
   }
 }
 
-async function markLeaveFromQueue(id) {
+async function addClient() {
+  const clientName = document.getElementById("clientName").value;
+  const projectName = document.getElementById("clientProjectName").value;
+  const projectType = document.getElementById("clientProjectType").value;
+  const priority = document.getElementById("clientPriority").value;
+  const requestedSkills = document.getElementById("clientRequestedSkills").value;
+  const pmName = document.getElementById("clientPmName").value;
+
+  if (!clientName || !projectName || !projectType || !priority || !requestedSkills || !pmName) {
+    showMessage("Fill all client details");
+    return;
+  }
+
+  try {
+    await request(`${API}/clients`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        clientName,
+        projectName,
+        projectType,
+        priority,
+        requestedSkills,
+        pmName
+      })
+    });
+
+    document.getElementById("clientName").value = "";
+    document.getElementById("clientProjectName").value = "";
+    document.getElementById("clientProjectType").value = "";
+    document.getElementById("clientPriority").value = "";
+    document.getElementById("clientRequestedSkills").value = "";
+    document.getElementById("clientPmName").value = "";
+
+    showMessage("Client added to queue");
+    loadData();
+  } catch (err) {
+    showMessage(err.message);
+  }
+}
+
+async function assignClient(clientId) {
+  const engineerId = document.getElementById(`eng_${clientId}`).value;
+  const leadId = document.getElementById(`lead_${clientId}`).value;
+  const startDate = document.getElementById(`start_${clientId}`).value;
+  const endDate = document.getElementById(`end_${clientId}`).value;
+
+  if (!engineerId || !leadId || !startDate || !endDate) {
+    showMessage("Select engineer, lead, start date, and end date");
+    return;
+  }
+
+  try {
+    await request(`${API}/clients/${clientId}/assign`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ engineerId, leadId, startDate, endDate })
+    });
+
+    showMessage("Client assigned successfully");
+    loadData();
+  } catch (err) {
+    showMessage(err.message);
+  }
+}
+
+async function markLeave(id) {
   const leaveFrom = document.getElementById(`leaveFrom_${id}`).value;
   const leaveTo = document.getElementById(`leaveTo_${id}`).value;
 
   if (!leaveFrom || !leaveTo) {
-    showMessage("Select leave from and leave to dates");
+    showMessage("Select leave dates");
     return;
   }
 
@@ -688,7 +1006,7 @@ async function markLeaveFromQueue(id) {
       body: JSON.stringify({ leaveFrom, leaveTo })
     });
 
-    showMessage("Leave marked. Queue updated automatically.");
+    showMessage("Leave marked");
     loadData();
   } catch (err) {
     showMessage(err.message);
@@ -698,7 +1016,7 @@ async function markLeaveFromQueue(id) {
 async function clearProject(id) {
   try {
     await request(`${API}/clear-project/${id}`, { method: "POST" });
-    showMessage("Project cleared");
+    showMessage("Project cleared. Client moved back to queue.");
     loadData();
   } catch (err) {
     showMessage(err.message);
@@ -708,7 +1026,7 @@ async function clearProject(id) {
 async function clearLeave(id) {
   try {
     await request(`${API}/clear-leave/${id}`, { method: "POST" });
-    showMessage("Leave cleared. Engineer will return to queue if available.");
+    showMessage("Leave cleared");
     loadData();
   } catch (err) {
     showMessage(err.message);
@@ -725,7 +1043,28 @@ async function deleteEngineer(id) {
   }
 }
 
+async function deleteLead(id) {
+  try {
+    await request(`${API}/leads/${id}`, { method: "DELETE" });
+    showMessage("Lead deleted");
+    loadData();
+  } catch (err) {
+    showMessage(err.message);
+  }
+}
+
+async function deleteClient(id) {
+  try {
+    await request(`${API}/clients/${id}`, { method: "DELETE" });
+    showMessage("Client deleted");
+    loadData();
+  } catch (err) {
+    showMessage(err.message);
+  }
+}
+
 loadTheme();
+showPage();
 loadData();
 </script>
 
