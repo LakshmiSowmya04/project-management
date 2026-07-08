@@ -535,7 +535,12 @@
 </div>
 
 <script>
-const API = "/api";
+const AWS_API_URL = "https://1agrgkd5kk.execute-api.us-east-1.amazonaws.com/api";
+
+const API =
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "/api"
+    : AWS_API_URL;
 
 let engineers = [];
 let engineerQueue = [];

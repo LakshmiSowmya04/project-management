@@ -7,15 +7,15 @@
       "level": "Mid",
       "leaveFrom": "",
       "leaveTo": "",
-      "clientId": "C001",
-      "clientName": "ABC Bank",
-      "projectName": "Banking API Pentest",
-      "projectType": "API Pentest",
-      "pmName": "Sowmya",
-      "leadId": "L001",
-      "leadName": "Rahul",
-      "startDate": "2026-07-01",
-      "endDate": "2026-07-08"
+      "clientId": "",
+      "clientName": "",
+      "projectName": "",
+      "projectType": "",
+      "pmName": "",
+      "leadId": "",
+      "leadName": "",
+      "startDate": "",
+      "endDate": ""
     },
     {
       "id": "E002",
@@ -33,23 +33,6 @@
       "leadName": "Neha",
       "startDate": "2026-07-05",
       "endDate": "2026-07-12"
-    },
-    {
-      "id": "E003",
-      "name": "Mani",
-      "skills": "Cloud Pentest, AWS, Network Pentest",
-      "level": "Junior",
-      "leaveFrom": "",
-      "leaveTo": "",
-      "clientId": "",
-      "clientName": "",
-      "projectName": "",
-      "projectType": "",
-      "pmName": "",
-      "leadId": "",
-      "leadName": "",
-      "startDate": "",
-      "endDate": ""
     },
     {
       "id": "E004",
@@ -109,21 +92,6 @@
     }
   ],
   "clients": [
-    {
-      "id": "C001",
-      "clientName": "ABC Bank",
-      "projectName": "Banking API Pentest",
-      "projectType": "API Pentest",
-      "priority": "High",
-      "requestedSkills": "API, Burp Suite, Auth Testing",
-      "pmName": "Sowmya",
-      "leadId": "L001",
-      "leadName": "Rahul",
-      "assignedEngineerId": "E001",
-      "assignedEngineerName": "Teja",
-      "startDate": "2026-07-01",
-      "endDate": "2026-07-08"
-    },
     {
       "id": "C002",
       "clientName": "XYZ Finance",
