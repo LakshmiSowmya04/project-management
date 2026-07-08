@@ -602,7 +602,7 @@ function showPage() {
   document.getElementById("engineersNav").classList.remove("active");
   document.getElementById("clientsNav").classList.remove("active");
 
-  if (path === "/clients") {
+  if (path === "/clients" || path === "/client") {
     document.getElementById("clientsPage").classList.add("active");
     document.getElementById("clientsNav").classList.add("active");
   } else {
